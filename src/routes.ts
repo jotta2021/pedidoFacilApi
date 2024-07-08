@@ -8,6 +8,10 @@ import { ListCategoryController } from "./controllers/category/ListCategoryContr
 import { CreateProductController } from "./controllers/product/CreateProductController";
 import uploadConfig from './config/multer'
 import multer from "multer";
+import { ListByCategoryController } from "./controllers/product/listProductsByController";
+import { CreateOrderController } from "./controllers/order/createOrderController";
+import { deleteOrderController } from "./controllers/order/deleteOrderController";
+import { AddItemController } from "./controllers/order/AddItemController";
 
 const router = Router();
 const upload= multer(uploadConfig.upload('./tmp'));
@@ -25,6 +29,15 @@ router.get('/categories',isAutenticate, new ListCategoryController().handle)
 
 //adicionar um produto
 router.post('/addProduct',isAutenticate,upload.single('file'), new CreateProductController().handle)
+router.get('/category/product', isAutenticate, new ListByCategoryController().handle)
 
+
+//criando order
+router.post('/addOrder', isAutenticate, new CreateOrderController().handle)
+router.delete('/deleteOrder', isAutenticate, new deleteOrderController().handle)
+
+//adicionando items ai pedido
+router.post('/addItem', isAutenticate, new AddItemController().handle)
 
 export {router}
+
