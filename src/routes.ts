@@ -17,6 +17,7 @@ import { SendOrderController } from "./controllers/order/SendOrderController";
 import { ListOrderController } from "./controllers/order/listOrdersController";
 import { DetailOrderController } from "./controllers/order/detailOrderController";
 import { ConcludedOrderController } from "./controllers/order/ConcludedOrderController";
+import { ListProductDefaultController } from "./controllers/product/listProductDefaultController";
 
 const router = Router();
 const upload= multer(uploadConfig.upload('./tmp'));
@@ -35,7 +36,7 @@ router.get('/categories',isAutenticate, new ListCategoryController().handle)
 //adicionar um produto
 router.post('/addProduct',isAutenticate,upload.single('file'), new CreateProductController().handle)
 router.get('/category/product', isAutenticate, new ListByCategoryController().handle)
-
+router.get('/products', isAutenticate, new ListProductDefaultController().handle)
 
 //criando order
 router.post('/addOrder', isAutenticate, new CreateOrderController().handle)
