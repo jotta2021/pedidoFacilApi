@@ -22,6 +22,7 @@ import DeleteProductController from "./controllers/product/DeleteProductControll
 import { UpdateProductController } from "./controllers/product/UpdateProduct";
 import DeleteCategoryController from "./controllers/category/DeleteCategoryController";
 import UpdateCategoryController from "./controllers/category/UpdateCategoryController";
+import CreateWaiterController from "./controllers/waiter/CreateWaiterController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -95,4 +96,8 @@ router.put(
 //adicionando items ai pedido
 router.post("/addItem", isAutenticate, new AddItemController().handle);
 router.delete("/deleteItem", isAutenticate, new RemoveItemController().handle);
+
+//garçom
+router.post("/addWaiter", isAutenticate, new CreateWaiterController().handle);
+
 export { router };
